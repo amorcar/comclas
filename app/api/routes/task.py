@@ -1,6 +1,6 @@
 # from fastapi import APIRouter, Body, Depends, HTTPException
 # from starlette.status import HTTP_400_BAD_REQUEST
-from fastapi import APIRouter, Body
+from fastapi import APIRouter, Body, HTTPException
 
 from app.models.schema.task import (
     Payload,
@@ -24,7 +24,12 @@ async def api_create_task(
         payload: Payload
 ) -> CreateTaskResponse:
     payload = payload.dict()
-    return CreateTaskResponse(**(await create_task(payload)))
+    response = CreateTaskResponse(**(await create_task(payload)))
+
+    if response.created:
+        return response
+    else:
+        raise HTTPException(status_code=500, detail=response.error)
 
 @router.get(
     "/{task_id}",

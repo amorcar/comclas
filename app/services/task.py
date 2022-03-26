@@ -3,13 +3,20 @@ from celery.result import AsyncResult
 
 async def create_task(payload:dict) -> dict:
     text = payload['text']
-    task = create_celery_task.delay(text)
-    breakpoint()
-    return {
-        'created': True,
-        'id': task.id,
-        'error': None,
-    }
+    try:
+        task = create_celery_task.delay(text)
+        return {
+            'created': True,
+            'id': task.id,
+            'error': None,
+        }
+    except Exception as e:
+        return {
+            'created': False,
+            'id': None,
+            'error': str(e),
+        }
+
 
 async def get_task_status(task_id: str) -> dict:
     task_result = AsyncResult(task_id)

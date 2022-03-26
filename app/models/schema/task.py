@@ -30,7 +30,7 @@ class CreateTaskResponse(BaseResponse):
     '''
     created: bool
     id: Optional[str] = None
-    error: Optional[bool] = None
+    error: Optional[str] = None
 
     class Config:
         schema_extra = {
@@ -50,10 +50,10 @@ class TaskStatusResponse(BaseResponse):
         SUCCESS
         ERROR
     '''
-    created_timestamp: int
-    task_status: TaskStatus
+    created_timestamp: Optional[int]
+    task_status: Optional[TaskStatus]
     result: Optional[TaskResult] = None
-    error: Optional[bool] = None
+    error: Optional[str] = None
 
     class Config:
         schema_extra = {
