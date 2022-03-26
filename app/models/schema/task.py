@@ -10,15 +10,18 @@ class Payload(BaseModel):
     text:str
 
 
-class Task(BaseModel):
+class TaskResult(BaseModel):
     '''
-    Task object
+    Task Result object
+    '''
+    value: Optional[Any]
+
+class TaskStatus(BaseModel):
+    '''
+    Task Status object
     '''
     id:str
     status:str
-    created_timestamp:int
-    payload:Payload
-    return_value: Optional[Any]
 
 
 class CreateTaskResponse(BaseResponse):
@@ -43,23 +46,25 @@ class TaskStatusResponse(BaseResponse):
     '''
     Response to the check task status action
     Possible status:
-        RUNNING
-        QUEUED
-        STOPPED
-        FINNISHED
+        PENDING
+        SUCCESS
         ERROR
     '''
-    id: str
-    status: str
-    return_value: Optional[Any] = None
+    created_timestamp: int
+    task_status: TaskStatus
+    result: Optional[TaskResult] = None
     error: Optional[bool] = None
 
     class Config:
         schema_extra = {
             "example": {
-                "id": '0880f18f-3328-49a5-8bf9-707764079c57',
-                "status": "RUNNING",
-                "return_value": None,
+                "status": {
+                    "id": '0880f18f-3328-49a5-8bf9-707764079c57',
+                    "status": "PENDING",
+                },
+                "result": {
+                    "value": None,
+                },
                 "error": None,
             }
         }

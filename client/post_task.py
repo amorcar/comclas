@@ -1,5 +1,6 @@
 import requests
 from time import sleep
+from pprint import pprint as pp
 
 def post_task():
     url = "http://127.0.0.1:8000/api/task"
@@ -7,7 +8,7 @@ def post_task():
     data = {'text': 'Hola jaja'}
     r = requests.post(url, headers=headers, json=data)
     print(r.status_code)
-    print(r.json())
+    pp(r.json())
     return r.json()['id']
 
 def get_task_status(id:int):
@@ -15,15 +16,17 @@ def get_task_status(id:int):
     headers = {'Content-type': 'application/json', 'accept': 'application/json'}
     r = requests.get(url, headers=headers)
     print(r.status_code)
-    print(r.json())
-    return r.json()['status']
+    pp(r.json())
+    return r.json()['task_status']['status']
 
 if __name__ == '__main__':
     print('POSTing task')
     id = post_task()
     sleep(1)
     print(f'Getting task [{id}]')
-    get_task_status(id)
+    status = get_task_status(id)
+    pp(f'Status: {status}')
     sleep(10)
     print(f'Getting task [{id}]')
-    get_task_status(id)
+    status = get_task_status(id)
+    pp(f'Status: {status}')
