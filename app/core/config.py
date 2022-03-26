@@ -9,7 +9,7 @@ config = Config(".env")
 API_PREFIX = "/api"
 VERSION = "0.0.0"
 DEBUG: bool = config("DEBUG", cast=bool, default=False)
-LOG_FILE: str = config("LOG_FILE", default="log/main.log")
+LOG_FILE: str = config("LOG_FILE", default="app/logs/main.log")
 
 PROJECT_NAME: str = config("PROJECT_NAME", default="COMCLAS")
 ALLOWED_HOSTS: List[str] = config(

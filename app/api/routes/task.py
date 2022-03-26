@@ -26,7 +26,7 @@ async def api_create_task(
     payload = payload.dict()
     response = CreateTaskResponse(**(await create_task(payload)))
 
-    if response.created:
+    if response.info.created:
         return response
     else:
         raise HTTPException(status_code=500, detail=response.error)
