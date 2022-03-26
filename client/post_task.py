@@ -50,4 +50,7 @@ if __name__ == '__main__':
     predict_company('Amazon Prime', amazon_prime)
     predict_company('Amazon Prime Video', amazon_prime_video)
     predict_company('CNN', cnn)
+    predict_company('FBI', fbi)
+    predict_company("L'equipe", lequipe)
     predict_company('Pornhub', pornhub)
+
