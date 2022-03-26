@@ -83,7 +83,7 @@ def sync_requests(url:str):
     sync_predict('FBI', fbi, url)
     sync_predict("L'equipe", lequipe, url)
     sync_predict('Pornhub', pornhub, url)
-    print(f'All async predictions made in: {time.time()-start_time:.2f} seconds')
+    print(f'All sync predictions made in: {time.time()-start_time:.2f} seconds')
 
 async def async_requests(url:str):
     start_time = time.time()
