@@ -12,6 +12,6 @@ celery = Celery(
 
 
 @celery.task(name="create_task")
-def create_celery_task(text:str):
+def create_celery_task(text:str) -> str:
     time.sleep(10)
-    return True
+    return "Test-Category"

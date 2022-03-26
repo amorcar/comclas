@@ -24,3 +24,6 @@ if __name__ == '__main__':
     sleep(1)
     print(f'Getting task [{id}]')
     get_task_status(id)
+    sleep(10)
+    print(f'Getting task [{id}]')
+    get_task_status(id)

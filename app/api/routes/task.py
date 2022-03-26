@@ -32,6 +32,6 @@ async def api_create_task(
     response_model=TaskStatusResponse,
     name="Check a certain classifier task status")
 async def api_check_task_status(
-        task_id: int,
+        task_id: str,
 ) -> TaskStatusResponse:
     return TaskStatusResponse(**(await get_task_status(task_id=task_id)))
