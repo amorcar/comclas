@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Any
 from pydantic import BaseModel
 from app.models.schema.base import BaseResponse
 
@@ -14,7 +14,7 @@ class CreateTaskResponse(BaseResponse):
         schema_extra = {
             "example": {
                 "created": True,
-                "id": 00000000000000,
+                "id": 0,
                 "error": None,
             }
         }
@@ -32,13 +32,15 @@ class TaskStatusResponse(BaseResponse):
     '''
     status: str
     id: int
+    return_value: Optional[Any] = None
     error: Optional[bool] = None
 
     class Config:
         schema_extra = {
             "example": {
                 "status": "RUNNING",
-                "id": 00000000000000,
+                "id": 0,
+                "return_value": None,
                 "error": None,
             }
         }

@@ -14,5 +14,6 @@ async def get_task_status(task_id: int) -> dict:
     return {
             'status': 'RUNNING',
             'id': task_id,
+            'return_value': None,
             'error': None,
     }
