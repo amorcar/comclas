@@ -1,0 +1,3 @@
+# API messages
+
+HAVERSINE_DESCRIPTION = " "
