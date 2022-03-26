@@ -100,8 +100,8 @@ async def async_requests(url:str):
 
 
 async def main():
-    # url = api_URL_container
-    url = api_URL_local
+    url = api_URL_container
+    # url = api_URL_local
 
     sync_requests(url)
     await async_requests(url)
