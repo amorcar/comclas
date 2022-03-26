@@ -3,6 +3,7 @@
 from fastapi import APIRouter, Body
 
 from app.models.schema.task import (
+    Payload,
     CreateTaskResponse,
     TaskStatusResponse,
 )
@@ -20,8 +21,9 @@ router = APIRouter()
     response_model=CreateTaskResponse,
     name="Post a Text to a new classifier task")
 async def api_create_task(
-        payload = Body(...),
+        payload: Payload
 ) -> CreateTaskResponse:
+    payload = payload.dict()
     return CreateTaskResponse(**(await create_task(payload)))
 
 @router.get(

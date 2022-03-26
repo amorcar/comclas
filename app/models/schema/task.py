@@ -2,6 +2,25 @@ from typing import Optional, Any
 from pydantic import BaseModel
 from app.models.schema.base import BaseResponse
 
+
+class Payload(BaseModel):
+    '''
+    Payload to classify
+    '''
+    text:str
+
+
+class Task(BaseModel):
+    '''
+    Task object
+    '''
+    id:int
+    status:str
+    created_timestamp:int
+    payload:Payload
+    return_value: Optional[Any]
+
+
 class CreateTaskResponse(BaseResponse):
     '''
     Response to the create task action
@@ -30,16 +49,16 @@ class TaskStatusResponse(BaseResponse):
         FINNISHED
         ERROR
     '''
-    status: str
     id: int
+    status: str
     return_value: Optional[Any] = None
     error: Optional[bool] = None
 
     class Config:
         schema_extra = {
             "example": {
-                "status": "RUNNING",
                 "id": 0,
+                "status": "RUNNING",
                 "return_value": None,
                 "error": None,
             }
