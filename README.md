@@ -15,3 +15,16 @@ $ source venv/bin/activate
 $ pip install -r app/requirements.txt
 $ python client/run_examples.py
 ```
+Output:
+```text
+Predicting category for Booking...
+Booking category: Travel
+Predicting category for Amazon Prime...
+Amazon Prime category: E-Commerce
+Predicting category for Amazon Prime Video...
+Amazon Prime Video category: Streaming Services
+Predicting category for CNN...
+CNN category: News
+```
+
+Build with FastAPI, Celery, Redis, Docker & Docker-compose.
