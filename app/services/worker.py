@@ -37,7 +37,8 @@ def create_celery_task(self, text:str) -> str:
             state='FAILED',
             meta={
                 'result': None,
-                'created_at': task_ts
+                'created_at': task_ts,
+                'error': str(e),
             }
         )
         raise Ignore()

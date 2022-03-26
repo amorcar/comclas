@@ -44,6 +44,7 @@ async def get_task_status(task_id: str) -> dict:
     }
     task_return_value = task_result.info.get('result', None)
     created_at = task_result.info.get('created_at', None)
+    error = task_result.info.get('error', None)
     return {
             'server_time': datetime.utcnow().timestamp(),
             'task_status': {
@@ -54,5 +55,5 @@ async def get_task_status(task_id: str) -> dict:
             'result': {
                 'value': task_return_value,
             },
-            'error': None,
+            'error': error,
     }

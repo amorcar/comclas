@@ -1,6 +1,5 @@
 from joblib import load
 
-clf = load('app/models/domain/comclas.joblib')
 labels = [
     'Adult',
     'Business/Corporate',
@@ -20,7 +19,16 @@ labels = [
     'Travel'
 ]
 
+model_name = 'app/models/domain/comclas.joblib'
+
+class ModelNotFoundError(Exception):
+    pass
+
 def predict(text:str) -> str:
+    try:
+        clf = load(model_name)
+    except:
+        raise ModelNotFoundError('Model not found')
     return labels[clf.predict([text])[0]]
 
 
