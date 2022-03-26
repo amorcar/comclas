@@ -27,4 +27,4 @@ Predicting category for CNN...
 CNN category: News
 ```
 
-Build with FastAPI, Celery, Redis, Docker & Docker-compose.
+Build with SKLearn, FastAPI, Celery, Redis, Docker & Docker-compose.
