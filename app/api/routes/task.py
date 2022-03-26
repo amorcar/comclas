@@ -1,9 +1,15 @@
 # from fastapi import APIRouter, Body, Depends, HTTPException
 # from starlette.status import HTTP_400_BAD_REQUEST
 from fastapi import APIRouter, Body
-from fastapi.responses import JSONResponse
 
-# from app.services.worker import create_task
+from app.models.schema.task import (
+    CreateTaskResponse,
+    TaskStatusResponse,
+)
+from app.services.task import (
+    create_task,
+    get_task_status,
+)
 
 
 router = APIRouter()
@@ -11,23 +17,19 @@ router = APIRouter()
 @router.post(
     "/",
     status_code=201,
-    # response_model=,
+    response_model=CreateTaskResponse,
     name="Post a Text to a new classifier task")
-async def run_task(
+async def api_create_task(
         payload = Body(...),
-) -> JSONResponse:
-    print(payload)
-    text = payload['text']
-    # task = create_task.delay(text)
-    # return JSONResponse({'task_id': task.id})
-    return JSONResponse({'task_id': len(text)})
+) -> CreateTaskResponse:
+    return CreateTaskResponse(**(await create_task(payload)))
 
 @router.get(
     "/{task_id}",
-    # status_code=201,
-    # response_model=,
+    status_code=200,
+    response_model=TaskStatusResponse,
     name="Check a certain classifier task status")
-async def get_task_status(
+async def api_check_task_status(
         task_id: int,
-) -> JSONResponse:
-    return JSONResponse(task_id)
+) -> TaskStatusResponse:
+    return TaskStatusResponse(**(await get_task_status(task_id=task_id)))

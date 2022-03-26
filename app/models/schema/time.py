@@ -6,7 +6,7 @@ class UTCTime(BaseResponse):
 
 class FormattedUTCTime(BaseResponse):
     utc_timestamp: str
-    
+
     @classmethod
     def from_timestamp(cls, timestamp: float):
         return cls(utc_timestamp = str(datetime.fromtimestamp(timestamp)))
