@@ -6,6 +6,7 @@ from datetime import datetime
 from celery import Celery
 from celery.exceptions import Ignore
 
+from app.models.domain.text_classifier import predict
 
 celery = Celery(
     __name__,
@@ -27,8 +28,9 @@ def create_celery_task(self, text:str) -> str:
     try:
         logging.info(f'Task [{self}] start prediction')
         #TODO: call model & make prediction
-        time.sleep(10)
-        logging.info(f'Task [{self}] predicted ok')
+        # time.sleep(10)
+        prediction = predict(text)
+        logging.info(f'Task [{self}] predicted ok -> [{prediction}]')
     except Exception as e:
         logging.error(e)
         self.update_state(
@@ -44,7 +46,7 @@ def create_celery_task(self, text:str) -> str:
     self.update_state(
         state='SUCCESS',
         meta={
-            'result': 'Test-Category',
+            'result': prediction,
             'created_at': task_ts
         }
     )
