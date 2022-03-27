@@ -29,7 +29,7 @@ def post_task(text:str, url:str) -> Optional[str]:
     r = requests.post(url, headers=api_HEADERS, json=data)
     return r.json().get('info', {}).get('id', None)
 
-def get_task_status(id:int, url:str) -> Tuple[Optional[str]]:
+def get_task_status(id:str, url:str) -> Tuple[Optional[str], Optional[str]]:
     r = requests.get(url+f'/{id}', headers=api_HEADERS)
     status = r.json().get('task_status', {}).get('status', None)
     result = r.json().get('result', {}).get('value', None)
@@ -45,7 +45,7 @@ def sync_predict(
         print('Request failed')
         return
     print(f'Predicting category for {name}...')
-    status = ''
+    status, result = None, None
     while status != 'SUCCESS':
         status, result = get_task_status(id, url)
         if status == 'FAILED':
@@ -64,8 +64,7 @@ async def async_predict(
         print('Request failed')
         return
     print(f'Predicting category for {name}...')
-    status = ''
-    status = ''
+    status, result = None, None
     while status != 'SUCCESS':
         status, result = get_task_status(id, url)
         if status == 'FAILED':
