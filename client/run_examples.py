@@ -17,6 +17,7 @@ from company_descriptions import (
 
 api_URL_container = "http://127.0.0.1:8004/api/task"
 api_URL_local = "http://127.0.0.1:8000/api/task"
+api_URL_aws = "http://52.207.248.221:5000/api/task"
 
 api_HEADERS = {
     'Content-type': 'application/json',
@@ -100,8 +101,9 @@ async def async_requests(url:str):
 
 
 async def main():
-    url = api_URL_container
+    # url = api_URL_container
     # url = api_URL_local
+    url = api_URL_aws
 
     sync_requests(url)
     await async_requests(url)
