@@ -10,7 +10,7 @@ $ cd comclas/
 $ docker-compose up -d --build
 ```
 
-To predict:
+To run the examples:
 ```bash
 $ python3 -m venv venv --prompt comclas
 $ source venv/bin/activate
