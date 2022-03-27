@@ -1,5 +1,5 @@
 ### File with some company descriptions
-
+## All descriptions by Wikipedia.org
 booking = (
     'Booking.com is a Dutch online travel agency for lodging reservations & '
     'other travel products, and a subsidiary of Booking Holdings.'
