@@ -1,6 +1,8 @@
 # comclas
 API to predict the category of companies by their description
 
+[Docs + Try it out](http://52.207.248.221:5000/docs)
+
 To run:
 ```bash
 $ git clone https://github.com/amorcar/comclas.git
