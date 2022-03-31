@@ -5,8 +5,9 @@ from starlette.exceptions import HTTPException
 from app.api.routes.api import router as api_router
 from app.api.errors.http_error import http_error_handler
 from app.api.errors.validation_error import http422_error_handler
-from app.core.config import  API_PREFIX, DEBUG, PROJECT_NAME, VERSION
+from app.core.config import API_PREFIX, DEBUG, PROJECT_NAME, VERSION
 from app.core.events import create_start_app_handler, create_stop_app_handler
+
 
 def get_application() -> FastAPI:
     application = FastAPI(title=PROJECT_NAME, debug=DEBUG, version=VERSION)
