@@ -3,7 +3,7 @@ run-dev:
 	uvicorn app.main:app --reload
 
 env:
-	python3 -m venv venv2 --prompt comclass; \
+	python3 -m venv venv --prompt comclass; \
 	. venv/bin/activate.fish
 
 install:
@@ -24,5 +24,5 @@ mypy:
 	python -m mypy --explicit-package-bases --namespace-packages app/ client/
 
 mypy-strict:
-	python -m mypy --strict app/ client/
+	python -m mypy --explicit-package-bases --namespace-packages --strict app/ client/
 
