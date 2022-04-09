@@ -15,13 +15,16 @@ def docs_redirect():
     return RedirectResponse(f"/docs")
 
 
+#TODO: check https://github.com/tiangolo/fastapi/issues/1947 for the
+#      response_model tpying error
 @router.get(
     "/utc/",
-    response_model=Union[UTCTime, FormattedUTCTime],
+    response_model=Union[UTCTime, FormattedUTCTime], # type: ignore
     name="Get current UTC timestamps",
     tags=["timestamp"],
 )
-def get_utc_timestamp(strf: Optional[bool] = Query(False)):
+def get_utc_timestamp(strf: Optional[bool] = False):
+    print(type(strf))
     if strf:
         return FormattedUTCTime.from_timestamp(get_current_UTC())
     return UTCTime(utc_timestamp=get_current_UTC())

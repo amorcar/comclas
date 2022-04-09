@@ -23,13 +23,13 @@ router = APIRouter()
     name="Post a Text to a new classifier task",
 )
 async def api_create_task(payload: Payload) -> CreateTaskResponse:
-    payload = payload.dict()
-    response = CreateTaskResponse(**(await create_task(payload)))
+    payload_dict = payload.dict()
+    response = CreateTaskResponse(**(await create_task(payload_dict)))
 
     if response.info.created:
         return response
     else:
-        raise HTTPException(status_code=500, detail=response.error)
+        raise HTTPException(status_code=500, detail=response.info.error)
 
 
 @router.get(

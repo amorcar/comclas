@@ -14,8 +14,8 @@ LOG_FILE: str = config("LOG_FILE", default="app/logs/main.log")
 PROJECT_NAME: str = config("PROJECT_NAME", default="COMCLAS")
 ALLOWED_HOSTS: List[str] = config(
     "ALLOWED_HOSTS",
-    cast=CommaSeparatedStrings,
-    default="",
+    cast=CommaSeparatedStrings, # type: ignore
+    default=[""],
 )
 
 # logging configuration

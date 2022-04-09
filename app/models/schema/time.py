@@ -1,12 +1,12 @@
 from datetime import datetime
-from app.models.schema.base import BaseResponse
+from pydantic import BaseModel
 
 
-class UTCTime(BaseResponse):
+class UTCTime(BaseModel):
     utc_timestamp: float
 
 
-class FormattedUTCTime(BaseResponse):
+class FormattedUTCTime(BaseModel):
     utc_timestamp: str
 
     @classmethod

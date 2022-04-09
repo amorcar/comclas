@@ -3,10 +3,10 @@ import os
 from pathlib import Path
 
 
-def configure_logging(log_file: str, log_level=logging.DEBUG):
-    log_file = Path(f"{os.getcwd()}/{log_file}")
-    if not os.path.isdir(log_file.parent):
-        os.mkdir(log_file.parent)
+def configure_logging(log_file: str, log_level: int = logging.DEBUG) -> None:
+    file_path = Path(f"{os.getcwd()}/{log_file}")
+    if not os.path.isdir(file_path.parent):
+        os.mkdir(file_path.parent)
 
     file_handler = logging.FileHandler(filename=log_file)
     terminal_handler = logging.StreamHandler()

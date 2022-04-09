@@ -16,7 +16,7 @@ celery = Celery(
 
 
 @celery.task(name="create_task", bind=True)
-def create_celery_task(self, text: str) -> str:
+def create_celery_task(self, text: str) -> None:
     task_ts = datetime.utcnow().timestamp()
     self.update_state(state="PROGRESS", meta={"result": None, "created_at": task_ts})
     try:

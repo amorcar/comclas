@@ -1,4 +1,4 @@
-from joblib import load
+from joblib import load # type: ignore
 
 labels = [
     "Adult",
@@ -31,4 +31,4 @@ def predict(text: str) -> str:
         clf = load(model_name)
     except:
         raise ModelNotFoundError("Model not found")
-    return labels[clf.predict([text])[0]]
+    return labels[clf.predict([text])[0]] # type: ignore

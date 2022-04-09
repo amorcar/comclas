@@ -1,4 +1,4 @@
-import requests
+import requests # type: ignore
 import time
 import asyncio
 
@@ -16,8 +16,8 @@ from company_descriptions import (
 )
 
 api_URL_container = "http://127.0.0.1:8004/api/task"
-api_URL_local = "http://127.0.0.1:8000/api/task"
 api_URL_aws = "http://52.207.248.221:5000/api/task"
+api_URL_local = "http://127.0.0.1:8000/api/task"
 
 api_HEADERS = {"Content-type": "application/json", "accept": "application/json"}
 
@@ -25,7 +25,7 @@ api_HEADERS = {"Content-type": "application/json", "accept": "application/json"}
 def post_task(text: str, url: str) -> Optional[str]:
     data = {"text": text}
     r = requests.post(url, headers=api_HEADERS, json=data)
-    return r.json().get("info", {}).get("id", None)
+    return r.json().get("info", {}).get("id", None) # type: ignore
 
 
 def get_task_status(id: str, url: str) -> Tuple[Optional[str], Optional[str]]:
@@ -39,7 +39,7 @@ def sync_predict(
     name: str,
     description: str,
     url: str,
-):
+) -> None :
     id = post_task(description, url)
     if id is None:
         print("Request failed")
@@ -55,7 +55,7 @@ def sync_predict(
     print(f"{name} category: {result}")
 
 
-async def async_predict(name: str, description: str, url: str):
+async def async_predict(name: str, description: str, url: str) -> None:
     id = post_task(description, url)
     if id is None:
         print("Request failed")
@@ -71,7 +71,7 @@ async def async_predict(name: str, description: str, url: str):
     print(f"{name} category: {result}")
 
 
-def sync_requests(url: str):
+def sync_requests(url: str) -> None:
     start_time = time.time()
     sync_predict("Booking", booking, url)
     sync_predict("Amazon Prime", amazon_prime, url)
@@ -83,7 +83,7 @@ def sync_requests(url: str):
     print(f"All sync predictions made in: {time.time()-start_time:.2f} seconds")
 
 
-async def async_requests(url: str):
+async def async_requests(url: str) -> None:
     start_time = time.time()
     await asyncio.gather(
         *[
@@ -99,7 +99,7 @@ async def async_requests(url: str):
     print(f"All async predictions made in: {time.time()-start_time:.2f} seconds")
 
 
-async def main():
+async def main() -> None:
     # url = api_URL_container
     # url = api_URL_local
     url = api_URL_aws
